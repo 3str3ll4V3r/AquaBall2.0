@@ -46,26 +46,30 @@ namespace AquaBall2._0
 
         protected override void Initialize()
         {
-             Global.GraphicsDevice = GraphicsDevice;
+            Global.GraphicsDevice = GraphicsDevice;
             Global.Verlets = new VElement(2 * GraphicsDevice.Viewport.Width,
-                GraphicsDevice.Viewport.Height);
+            GraphicsDevice.Viewport.Height);
             Global.cameraMono = new CameraMono(new Vec2(0, 0));
             Global.mousePosition = new Vec2(0, 0);
             Global.worldMousePosition = new Vec2(0, 0);
-            Global.map2 = new Map2(new Size(2 * GraphicsDevice.Viewport.Width,
-                GraphicsDevice.Viewport.Height),
-                ref Global.caramelo, ref Global.Verlets);
+            Global.map2 = new Map2(new Size(2 * GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), ref Global.caramelo, ref Global.Verlets);
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            // Definir colores
+            Color pinkColor = Color.Pink;
+            Color purpleColor = Color.Purple;
+
             Global._spriteBatch = new SpriteBatch(GraphicsDevice);
-            Global.galleta = Content.Load<Texture2D>("Ball2");
+            Global.galleta = new Texture2D(GraphicsDevice, 1, 1);
+            Global.galleta.SetData(new[] { pinkColor });
             Global.background = Content.Load<Texture2D>("Sky");
 
             Global.L2 = Content.Load<Texture2D>("pngwing.com");
-            Global.pin = Content.Load<Texture2D>("pixil-frame-0 (19)");
+            Global.pin = new Texture2D(GraphicsDevice, 1, 1);
+            Global.pin.SetData(new[] { purpleColor });
             Global.avionL = Content.Load<Texture2D>("Galleta reposo izq");
             Global.avionLactive = Content.Load<Texture2D>("Galleta en avion izq");
             Global.avionR = Content.Load<Texture2D>("Avion reposo");
